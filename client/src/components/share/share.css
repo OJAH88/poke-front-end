@@ -62,6 +62,11 @@
 .shareOptionText {
     font-size: 14px;
     font-weight: bold;
+    border: none;
+}
+
+.shareOptionText:focus{
+    outline: none;   
 }
 
 .shareButton {
