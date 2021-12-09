@@ -13,7 +13,7 @@ const Register = () => {
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();  
-    const newUser = { username, email, password, passwordAgain}
+    const newUser = { username, email, password, password_confirmation: passwordAgain}
 
 const handleSubmit = (e) => {
     e.preventDefault()

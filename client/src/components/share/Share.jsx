@@ -16,7 +16,7 @@ const Share = () => {
         setErrors([])
         setIsLoading(true);
         setTimeout(() => {
-            fetch('http://localhost:3000/posts', {
+            fetch('/posts', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: "include",
