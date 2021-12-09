@@ -11,17 +11,17 @@ export default function Login( {onLogin}) {
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState([]);
-    const navigate = useNavigate();  
+    // const navigate = useNavigate();  
 
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
-        fetch("/login", {
+        fetch("http://localhost:3000/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ username }),
+          body: JSON.stringify({ username, password }),
         })
         .then((r) => {
             setIsLoading(false);
@@ -30,7 +30,7 @@ export default function Login( {onLogin}) {
             } else {
               r.json().then((err) => setErrors(err.errors));
             }
-            navigate('/me');
+            // navigate('/me');
           }, 600);
         }
 
@@ -45,7 +45,7 @@ export default function Login( {onLogin}) {
                 <div className="loginRight">
                     <div className="loginBox">
                     <form onSubmit={handleSubmit}>
-                        <input placeholder="Email" className="loginInput" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} /> <br />
+                        <input placeholder="Username" className="loginInput" required value={username} onChange={(e) => setUsername(e.target.value)} /> <br />
                         <input placeholder="Password" className="loginInput" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} /> <br />
                         <button className="loginButton" type="submit">Log In</button> <br />
                         <span className="loginForgot">Forgot Password?</span> <br />

@@ -7,7 +7,7 @@ import Rightbar from "../../components/rightbar/Rightbar";
 export default function Profile(){
     return(
         <>
-        <Topbar/>
+        {/* <Topbar/> */}
         <div className="profile">
             <Sidebar/>
             <div className="profileRight">

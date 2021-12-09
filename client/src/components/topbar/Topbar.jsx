@@ -2,7 +2,7 @@ import "./topbar.css"
 import { Search, Person, Chat, Notifications } from "@material-ui/icons"
 import { Link } from "react-router-dom"
 
-export default function Topbar(){
+export default function Topbar({user, setUser}){
     return (
         <div className="topbarContainer">
             <div className="topbarLeft">

@@ -8,16 +8,29 @@ import Profile from "./pages/profile/Profile";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {useState, useEffect} from 'react'
 import React, { useHistory, useParams } from "react-router"
-import useFetch from "./useFetch"
+// import useFetch from "./useFetch"
 
 
 
 function App() {
-const {error, isLoading, data} = useFetch('http://localhost:3000/')
+// const {error, isLoading, data} = useFetch('http://localhost:3000/', {withCredentials: true})
+const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/me", {withCredentials: true}).then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+
+  if (!user) return <Login onLogin={setUser} />;
+
   return (
   <BrowserRouter>
     <div className="App">
-      {/* <Topbar /> */}
+      <Topbar user={user} setUser={setUser} />
+      <main>
       <div className="content">
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -26,6 +39,7 @@ const {error, isLoading, data} = useFetch('http://localhost:3000/')
           <Route path="/me" element={<Profile />} />
         </Routes>
         </div>
+        </main>
         </div>
   </BrowserRouter>
   )}
