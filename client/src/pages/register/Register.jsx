@@ -1,37 +1,36 @@
-import "./register.css"
-import { useState } from "react"
-import React, { useParams } from "react-router"
-import useFetch from "../../useFetch"
-import { useNavigate } from "react-router-dom"; 
+import "./register.css";
+import { useState } from "react";
+import React, { useParams } from "react-router";
+import useFetch from "../../useFetch";
+import { useNavigate } from "react-router-dom";
 
+const Register = ({ allUsers }) => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
+  const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const newUser = { username, email, password, passwordAgain };
 
-const Register = () => {
-    const [username, setUsername] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [passwordAgain, setPasswordAgain] = useState('')
-    const [errors, setErrors] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate();  
-    const newUser = { username, email, password, passwordAgain}
-
-const handleSubmit = (e) => {
-    e.preventDefault()
-    setErrors([])
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrors([]);
     setIsLoading(true);
     setTimeout(() => {
-        fetch('/signup', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newUser)
-        }).then(() => {
-            console.log("New User Added")
-            console.log(newUser)
-            setIsLoading(false)
-            navigate('/');
-        })
-    },600)}
-
+      fetch("/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newUser),
+      }).then(() => {
+        console.log("New User Added");
+        console.log(newUser);
+        setIsLoading(false);
+        navigate("/");
+      });
+    }, 600);
+  };
 
   return (
     <div className="login">
@@ -81,7 +80,8 @@ const handleSubmit = (e) => {
                 onChange={(e) => setPasswordAgain(e.target.value)}
               />{" "}
               <br />
-              <button className="loginButton">Sign Up</button><br />
+              <button className="loginButton">Sign Up</button>
+              <br />
               <button className="loginRegisterButton">Log into Account</button>
             </form>
           </div>

@@ -2,7 +2,18 @@ import "./topbar.css"
 import { Search, Person, Chat, Notifications } from "@material-ui/icons"
 import { Link } from "react-router-dom"
 
-export default function Topbar(){
+export default function Topbar({user, setUser}){
+    
+    
+    
+    function handleLogoutClick() {
+        fetch("/logout", { method: "DELETE" }).then((r) => {
+          if (r.ok) {
+            setUser(null);
+          }
+        });
+      }
+    
     return (
         <div className="topbarContainer">
             <div className="topbarLeft">
@@ -18,9 +29,10 @@ export default function Topbar(){
                 <div className="topbarLinks">
                     <span className="topbarLink"><Link to="/">Homepage</Link></span>
                     <span className="topbarLink"><Link to="/me">Profile</Link></span>
+                    <span className="topbarLink"><Link to="/logout">Sign Out  </Link></span>
                 </div>
                 <div className="topbarIcons">
-                    <div className="topbarIconItem">
+                    {/* <div className="topbarIconItem">
                         <Person />
                         <span className="topbarIconBadge">1</span>
                     </div>
@@ -31,9 +43,9 @@ export default function Topbar(){
                     <div className="topbarIconItem">
                         <Notifications />
                         <span className="topbarIconBadge">53</span>
-                    </div>
+                    </div> */}
                 </div>
-                <img src="/assets/person/pic1.jpg" className="topbarImage" />
+                {/* <img src="/assets/person/pic1.jpg" className="topbarImage" /> */}
             </div>
         </div>
     )

@@ -45,7 +45,7 @@ export default function Login( {onLogin}) {
                 <div className="loginRight">
                     <div className="loginBox">
                     <form onSubmit={handleSubmit}>
-                        <input placeholder="Email" className="loginInput" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} /> <br />
+                        <input placeholder="Email" className="loginInput"  required value={username} onChange={(e) => setUsername(e.target.value)} /> <br />
                         <input placeholder="Password" className="loginInput" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} /> <br />
                         <button className="loginButton" type="submit">Log In</button> <br />
                         <span className="loginForgot">Forgot Password?</span> <br />
