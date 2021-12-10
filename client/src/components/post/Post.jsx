@@ -1,16 +1,10 @@
 import "./post.css";
-import { MoreVert } from "@material-ui/icons";
+import { MoreVert, RadioButtonCheckedOutlined } from "@material-ui/icons";
 // import { Users } from "../../dummyData";
 import { useState } from "react";
 
-export default function Post({ post }) {
-  const [poke, setPoke] = useState(post.poke);
-  const [isPoked, setIsPoked] = useState(false);
-console.log(post)
-  const pokeHandler = () => {
-    setPoke(isPoked ? poke - 1 : poke + 1);
-    setIsPoked(!isPoked);
-  };
+export default function Post({ post, handleDelete }) {
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -30,15 +24,12 @@ console.log(post)
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img
-              className="pokeIcon"
-              src="/assets/post/poke1.png"
-              onClick={pokeHandler}
-            />
-            <span className="pokeCounter">{poke} people poked it</span>
+            <button onClick={() => {
+            handleDelete(post);
+          }}>Delete</button>
           </div>
           <div className="postBottomRight">
-            <span className="postCommentText">{post.comment} comments</span>
+
           </div>
         </div>
       </div>

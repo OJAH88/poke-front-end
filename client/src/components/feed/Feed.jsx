@@ -13,6 +13,16 @@ export default function Feed() {
         setAllPosts(allPosts);
       });
   }, []);
+
+  const handleDelete = (deletedPost) => {
+    fetch(`/posts/${deletedPost.id}`, {
+      method: "Delete",
+      headers: { "Content-Type": "application/json" },
+    }).then(() => {
+      const updatedPosts = allPosts.filter((post) => post.id !== deletedPost.id);
+      setAllPosts(updatedPosts);
+    });
+  };
   // const handleSubmit = (e) => {
   //     e.preventDefault();
   //     console.log("fuck");
@@ -36,7 +46,7 @@ export default function Feed() {
       <div className="feedWrapper">
         <Share />
         {allPosts.map((post) => (
-          <Post key={post.id} post={post} />
+          <Post key={post.id} post={post} handleDelete={handleDelete} allPosts={allPosts}/>
         ))}
       </div>
     </div>
